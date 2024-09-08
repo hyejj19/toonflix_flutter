@@ -4,23 +4,24 @@ class CurrencyCard extends StatelessWidget {
   final bool isInverted;
   final String curName, curCode, amount;
   final IconData icon;
-  final double offset;
+  final int order;
 
   final _blackColor = const Color(0xFF1F2123);
 
-  const CurrencyCard(
-      {super.key,
-      required this.isInverted,
-      required this.curName,
-      required this.curCode,
-      required this.amount,
-      required this.icon,
-      this.offset = 0.0});
+  const CurrencyCard({
+    super.key,
+    required this.isInverted,
+    required this.curName,
+    required this.curCode,
+    required this.amount,
+    required this.icon,
+    required this.order,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset: Offset(0, offset),
+      offset: Offset(0, -20 * (order - 1)),
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
