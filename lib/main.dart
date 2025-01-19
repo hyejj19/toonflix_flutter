@@ -1,9 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:toonflix/screens/home_screen.dart';
-import 'package:toonflix/widget/button.dart';
-import 'package:toonflix/widget/currency_card.dart';
 
 void main() {
   runApp(const App());
@@ -16,7 +11,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFE7626C),
+        scaffoldBackgroundColor: Colors.white,
         textTheme: const TextTheme(
           headlineLarge: TextStyle(
             color: Color(0xFF232B55),
@@ -24,7 +19,7 @@ class App extends StatelessWidget {
         ),
         cardColor: const Color(0xFFF4EDDB),
       ),
-      home: const HomeScreen(),
+      home: const Scaffold(),
     );
   }
 }
