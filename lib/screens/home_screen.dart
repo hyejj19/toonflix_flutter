@@ -46,9 +46,18 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onResetPressed() {
+    setState(() {
+      totalSecs = twentyFiveMins;
+      isRunning = false;
+    });
+
+    timer.cancel();
+  }
+
   String format(int secs) {
     var duration = Duration(seconds: secs);
-    var formatedSecs = duration.toString().split('.').first.substring(2, 7);
+    var formatedSecs = duration.toString().split('.')[0].substring(2, 7);
 
     return formatedSecs;
   }
@@ -75,17 +84,29 @@ class _HomeScreenState extends State<HomeScreen> {
           Flexible(
               flex: 2,
               child: Center(
-                child: IconButton(
-                  icon: Icon(
-                    isRunning
-                        ? Icons.pause_circle_outline_outlined
-                        : Icons.play_circle_outline_outlined,
-                    size: 120,
-                    color: Theme.of(context).cardColor,
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      isRunning
+                          ? Icons.pause_circle_outline_outlined
+                          : Icons.play_circle_outline_outlined,
+                      size: 100,
+                      color: Theme.of(context).cardColor,
+                    ),
+                    onPressed: isRunning ? onPausePressed : onStartPressed,
                   ),
-                  onPressed: isRunning ? onPausePressed : onStartPressed,
-                ),
-              )),
+                  IconButton(
+                    icon: Icon(
+                      Icons.restore,
+                      size: 100,
+                      color: Theme.of(context).cardColor,
+                    ),
+                    onPressed: isRunning ? onPausePressed : onResetPressed,
+                  ),
+                ],
+              ))),
           Flexible(
               flex: 1,
               child: Row(
